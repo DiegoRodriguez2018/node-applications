@@ -1,24 +1,26 @@
 // This is a Node C library, beghind the scene its C but you get to configure it with javascript.
 const http = require('http')
+//This is File System library, we use it to read the data from index.html.  
+const fs = require('fs')
+//Just defining the port were our server will run. 
 const PORT = 3000
 
 const server = http.createServer((request,response)=> {
     response.statusCode = 200
         //Note we are adding what kind of file we are sending in setHeader
         response.setHeader = ('Content-Type', 'text/html')
-        //We send the element in response.end()
-        response.end(`<!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <title>My title</title>
-        </head>
-        <body>
-            <h1 style="color: blue">My website</h1>
-        </body>
-        </html>`)
+        
+        //Defining the path with __dirname
+        const path = __dirname + '/index.html'
+
+        //using File System Library
+        fs.readFile(path, {encoding: 'utf-8'}, (errors, data)=>{
+            response.write(data)
+            
+            //We send the element in response.end()
+            response.end()
+        })
+        
     })
 
 
