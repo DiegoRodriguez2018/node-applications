@@ -1,10 +1,10 @@
 const renderAbilities = (poke) => {
   const panel = document.querySelector('#poke-info');
-  const ul = `<ul id="abilities"></ul>`;
-  panel.insertAdjacentHTML('beforeend', ul);
-  const ulElement = document.querySelector('#abilities');
+  const ol = `<ol id="abilities"></ol>`;
+  panel.insertAdjacentHTML('beforeend', ol);
+  const olElement = document.querySelector('#abilities');
   poke.abilities.forEach(ability => {
-    ulElement.insertAdjacentHTML('beforeend', `<li>${ability.ability.name}</li>`);
+    olElement.insertAdjacentHTML('beforeend', `<li>${ability.ability.name}</li>`);
   });
 }
 

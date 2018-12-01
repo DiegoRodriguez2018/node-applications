@@ -2,11 +2,11 @@ const renderPokemon = (pokemon) => {
   const list = document.querySelector('#pokemon-list');
   pokemon.forEach((poke, index) => {
     const panel = `
-      <div>
+      <li>
         <a href="poke-info.html?${index + 1}">
           <p>${poke.name}</p>
         </a>
-      </div>
+      </li>
     `;
     list.insertAdjacentHTML('beforeend', panel)
   })

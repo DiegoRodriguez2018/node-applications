@@ -61,6 +61,6 @@ app.delete('/pokemon/:id', (req, res) => {
   // TODO: Implement a DELETE endpoint to delete a pokemon from the array
 });
 
-app.listen(5000, () => {
-  console.log('listening on port 5000');
+app.listen(3000, () => {
+  console.log('listening on port 3000');
 });
