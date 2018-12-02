@@ -1,0 +1,19 @@
+{
+  "name": "pokemon",
+  "version": "1.0.0",
+  "description": "pokemon-list-api",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "joi": "^14.3.0",
+    "mongoose": "^5.3.14",
+    "pokedex": "^1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
