@@ -48,8 +48,8 @@ task('create-folder', function (modelName) {
 task('create-views', function (modelName) {
     const appRoot = require('app-root-path');
     console.log('appRoot.path',': ', appRoot.path);
-    const originPath = appRoot.path + '/templates'
-    const destinationPath = appRoot.path + `/Views/${modelName}` 
+    const originPath = appRoot.path + '/templates';
+    const destinationPath = appRoot.path + `/Views/${modelName}` ;
     
     jake.cpR(originPath, destinationPath);
 
