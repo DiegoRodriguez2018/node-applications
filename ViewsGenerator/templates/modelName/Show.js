@@ -8,7 +8,7 @@ const regularRequest = axios.create({
 
 class Show extends Component {
     //this refers to the api path
-    modelPath = '/modelName/'
+    modelPath = '/modelNamePlaceholder/'
 
     state = {
         item: null,

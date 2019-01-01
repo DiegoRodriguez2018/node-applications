@@ -11,7 +11,7 @@ class Edit extends Component {
     render() {
         return(
 
-            <h1>Edit modelName page</h1>
+            <h1>Edit modelNamePlaceholder page</h1>
         )
     }
 }

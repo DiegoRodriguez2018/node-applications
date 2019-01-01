@@ -11,7 +11,7 @@ class New extends Component {
     render() {
         return(
 
-            <h1>New modelName page</h1>
+            <h1>New modelNamePlaceholder page</h1>
         )
     }
 }

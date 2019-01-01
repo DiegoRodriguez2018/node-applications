@@ -24,33 +24,30 @@ inquirer.prompt(QUESTIONS)
         // const projectChoice = answers['project-choice'];
         const modelName = answers['model-name'];
         const templatePath = `${__dirname}/templates/modelName`;
-
-
-
-        // createViewsContent(templatePath, modelName);
-        const string = "just a test"
-
-        console.log(findAndReplace(string, 'test', 'app'));
+        createViewsContent(templatePath, modelName);
     });
 
+function createFolder(path){
+    //This method will create a folder if it doesn't exist.
+    if (fs.existsSync(path) === false) {
+        fs.mkdirSync(path);
+    }
+}
 function findAndReplace(originalContent, wordToSearch, wordToReplaceWith) {
     const regex = new RegExp(`${wordToSearch}`, 'g');
     const result = originalContent.replace(regex, wordToReplaceWith);
     return result;
 }
+function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
 
 function createViewsContent(templatePath, modelName) {
     const filesToCreate = fs.readdirSync(templatePath);
-
-    //Checking if Views/ folder exist, if not it will be created.
-    if (fs.existsSync(`${CURR_DIR}/Views`) === false) {
-        console.log("Creating Views Directory.")
-        fs.mkdirSync(`${CURR_DIR}/Views`);
-    }
-
+    // Creating Views/ folder
+    createFolder(`${CURR_DIR}/Views`);
     // Creating Views/modelName folder
-    fs.mkdirSync(`${CURR_DIR}/Views/${modelName}`);
-
+    createFolder(`${CURR_DIR}/Views/${capitalize(modelName)}`);
 
     filesToCreate.forEach(file => {
         const origFilePath = `${templatePath}/${file}`;
@@ -65,13 +62,11 @@ function createViewsContent(templatePath, modelName) {
             // Renaming:
             if (file === '.npmignore') file = '.gitignore';
 
-            const writePath = `${CURR_DIR}/Views/${modelName}/${file}`;
+            const writePath = `${CURR_DIR}/Views/${capitalize(modelName)}/${file}`;
 
-            const content = findAndReplace(templateContent, 'modelName', 'user');
+            const content = findAndReplace(templateContent, 'modelNamePlaceholder', modelName);
 
-            console.log('content', ': ', content);
-
-            // fs.writeFileSync(writePath, content, 'utf8');
+            fs.writeFileSync(writePath, content, 'utf8');
 
         } else if (stats.isDirectory()) {
 
@@ -81,9 +76,6 @@ function createViewsContent(templatePath, modelName) {
             createDirectoryContents(`${templatePath}/${file}`, `${modelName}/${file}`);
         }
     });
-
-
-
     console.log(`View files for ${modelName} generated. `)
 }
 
