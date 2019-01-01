@@ -25,20 +25,24 @@ inquirer.prompt(QUESTIONS)
         const modelName = answers['model-name'];
         const templatePath = `${__dirname}/templates/modelName`;
 
-        if (fs.existsSync(`${CURR_DIR}/Views`) === false) {
-            console.log("Creating Views Directory.")
-            fs.mkdirSync(`${CURR_DIR}/Views`);
-        }
 
-        fs.mkdirSync(`${CURR_DIR}/Views/${modelName}`);
 
-        createDirectoryContents(templatePath, modelName);
+        createViewsContent(templatePath, modelName);
 
-        console.log(`View files for ${modelName} generated. `)
     });
 
-function createDirectoryContents(templatePath, modelName) {
+function createViewsContent(templatePath, modelName) {
     const filesToCreate = fs.readdirSync(templatePath);
+
+    //Checking if Views/ folder exist, if not it will be created.
+    if (fs.existsSync(`${CURR_DIR}/Views`) === false) {
+        console.log("Creating Views Directory.")
+        fs.mkdirSync(`${CURR_DIR}/Views`);
+    }
+
+    // Creating Views/modelName folder
+    fs.mkdirSync(`${CURR_DIR}/Views/${modelName}`);
+
 
     filesToCreate.forEach(file => {
         const origFilePath = `${templatePath}/${file}`;
@@ -63,4 +67,15 @@ function createDirectoryContents(templatePath, modelName) {
             createDirectoryContents(`${templatePath}/${file}`, `${modelName}/${file}`);
         }
     });
+
+
+    console.log(`View files for ${modelName} generated. `)
+}
+
+function findAndReplace(filePath, wordToSearch, wordToReplaceWith){
+    // const filePath =  __dirname + '/index.js'
+    const content = fs.readFileSync(filePath, 'utf8');
+    const result = content.replace(`/${wordToSearch}/g`,wordToReplaceWith);
+    console.log('result',': ', result);
+    
 }
