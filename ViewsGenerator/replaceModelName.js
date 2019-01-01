@@ -1,21 +1,9 @@
-const fs = require('fs')
-const filePath =  __dirname + '/index.js'
-const content = fs.readFileSync(filePath, 'utf8');
+function findAndReplace(originalContent, wordToSearch, wordToReplaceWith) {
+    const regex = new RegExp(`${wordToSearch}`, 'g');
+    const result = originalContent.replace(regex, wordToReplaceWith);
+    return result;
+}
 
-// console.log('contents',': ', contents);
+const string = "just a test"
 
-const result = content.replace(/program/g,'app');
-
-console.log('result',': ', result);
-
-
-// fs.readFile(someFile, 'utf8', function (err,data) {
-//   if (err) {
-//     return console.log(err);
-//   }
-//   const result = data.replace(/string to be replaced/g, 'replacement');
-
-//   fs.writeFile(someFile, result, 'utf8', function (err) {
-//      if (err) return console.log(err);
-//   });
-// });
+console.log(findAndReplace(string, 'test', 'app'));

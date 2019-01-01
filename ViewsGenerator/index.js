@@ -27,9 +27,17 @@ inquirer.prompt(QUESTIONS)
 
 
 
-        createViewsContent(templatePath, modelName);
+        // createViewsContent(templatePath, modelName);
+        const string = "just a test"
 
+        console.log(findAndReplace(string, 'test', 'app'));
     });
+
+function findAndReplace(originalContent, wordToSearch, wordToReplaceWith) {
+    const regex = new RegExp(`${wordToSearch}`, 'g');
+    const result = originalContent.replace(regex, wordToReplaceWith);
+    return result;
+}
 
 function createViewsContent(templatePath, modelName) {
     const filesToCreate = fs.readdirSync(templatePath);
@@ -51,16 +59,22 @@ function createViewsContent(templatePath, modelName) {
         const stats = fs.statSync(origFilePath);
 
         if (stats.isFile()) {
-            const contents = fs.readFileSync(origFilePath, 'utf8');
+            const templateContent = fs.readFileSync(origFilePath, 'utf8');
 
             // When we install globally, npm will convert all the .gitignore files to .npmignore, which is not good if we want to have .gitignore files in our templates. To fix this we rename it:
             // Renaming:
             if (file === '.npmignore') file = '.gitignore';
 
             const writePath = `${CURR_DIR}/Views/${modelName}/${file}`;
-            fs.writeFileSync(writePath, contents, 'utf8');
+
+            const content = findAndReplace(templateContent, 'modelName', 'user');
+
+            console.log('content', ': ', content);
+
+            // fs.writeFileSync(writePath, content, 'utf8');
+
         } else if (stats.isDirectory()) {
-            
+
             fs.mkdirSync(`${CURR_DIR}/Views/${modelName}/${file}`);
 
             // recursive call
@@ -69,13 +83,7 @@ function createViewsContent(templatePath, modelName) {
     });
 
 
+
     console.log(`View files for ${modelName} generated. `)
 }
 
-function findAndReplace(filePath, wordToSearch, wordToReplaceWith){
-    // const filePath =  __dirname + '/index.js'
-    const content = fs.readFileSync(filePath, 'utf8');
-    const result = content.replace(`/${wordToSearch}/g`,wordToReplaceWith);
-    console.log('result',': ', result);
-    
-}
