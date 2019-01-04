@@ -57,21 +57,14 @@ function createViewsContent(templatePath, modelName) {
 
         if (stats.isFile()) {
             const templateContent = fs.readFileSync(origFilePath, 'utf8');
-
             // When we install globally, npm will convert all the .gitignore files to .npmignore, which is not good if we want to have .gitignore files in our templates. To fix this we rename it:
             // Renaming:
             if (file === '.npmignore') file = '.gitignore';
-
             const writePath = `${CURR_DIR}/Views/${capitalize(modelName)}/${file}`;
-
             const content = findAndReplace(templateContent, 'modelNamePlaceholder', modelName);
-
             fs.writeFileSync(writePath, content, 'utf8');
-
         } else if (stats.isDirectory()) {
-
             fs.mkdirSync(`${CURR_DIR}/Views/${modelName}/${file}`);
-
             // recursive call
             createDirectoryContents(`${templatePath}/${file}`, `${modelName}/${file}`);
         }

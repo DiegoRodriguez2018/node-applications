@@ -1,0 +1,17 @@
+{
+  "name": "viewsgenerator",
+  "version": "1.0.0",
+  "description": "To create Views just run node index.js and enter the model name. This will create a folder /<model-name> and inside it the following react views:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^6.2.1"
+  },
+  "bin": {
+    "gview": "./index.js"
+  }
+}

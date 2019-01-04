@@ -5,6 +5,10 @@ To create Views just run node index.js and enter the model name. This will creat
 * New
 * Show
 
-Development goals:
-1. modify the files so it replaces modelName placeholder to the model name entered by the user. 
-2. modify the generator so create /Views/ folder if it doesnt exist yet allowing the user to run the command from the project root folder. 
+Each of these files will be customized as well. 
+
+To use this generator from any folder install it globally:
+`npm install -g` 
+
+To generate a new project just go to the desired folder destination and type:
+`gview`
