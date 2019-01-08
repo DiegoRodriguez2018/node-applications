@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Welcome to Papi chat</h1>
+
+    <div id="chat">
+    </div>
+
+    <input type="text" id="messageBox">
+    <button type="button" id="messageSend"> Send message </button>
+
+</body>
+<script>
+    
+    const button = document.querySelector("#messageSend");
+    button.addEventListener('click', (e)=>{
+        // console.log("clicked");
+        const input = document.querySelector("#messageBox");
+        const message = input.value;
+        console.log(message);
+        ws.send(message);
+    })
+
+    var ws = new WebSocket('ws://localhost:40510');
+    // event emmited when connected
+    ws.onopen = function () {
+        console.log('websocket is connected ...')
+        // sending a send event to websocket server
+    }
+    // event emmited when receiving message 
+    ws.onmessage = function (ev) {
+        console.log(ev);
+        const message = ev.data;
+        const tag = document.createElement('p');
+        tag.innerHTML = message;
+        const chatbox =   document.querySelector("#chat");
+        chatbox.appendChild(tag);
+    }
+</script>
+</html>
