@@ -3,9 +3,6 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 
 
-const CURR_DIR = process.cwd();
-//         fs.mkdirSync(`${CURR_DIR}/${projectName}`);
-
 const folders = fs.readdirSync('../');
 
 const data = [];
@@ -15,8 +12,8 @@ folders.map(folder => {
         const folderPath = `../${folder}`;
         const stats = fs.statSync(folderPath);
 
-        // console.log('stats',': ', stats);
         if (!stats.isFile()){
+            // console.log('stats',': ', stats);
             
             const entry = { created: stats.birthtimeMs, name: folder };
             data.push(entry);
@@ -36,9 +33,9 @@ function compare(a, b) {
 
 data.sort(compare);
 
-// console.log('data', ': ', data);
+console.log('data',': ', data);
 
-data.forEach(entry=>{
-    console.log('entry.name',': ', entry.name);
+// data.forEach(entry=>{
+//     console.log('entry.name',': ', entry.name);
     
-})
+// })
