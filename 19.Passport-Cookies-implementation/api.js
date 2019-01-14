@@ -28,6 +28,7 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').load();
 }            
 
+// to use the env variable we just type:  process.env.VARIABLE
 
 //CREATING A SESSION
 const oneDay = 1000 * 60 * 60 * 24; //note that maxAge takes an integer in miliseconds. 
@@ -70,6 +71,7 @@ passport.use(new LocalStrategy(
     (username, password, done) => {
         User.findOne({ username }, (err, user) => {
             if (err) {
+                //SERVER ERROR.
                 return done(err)
                 //remember arguments order: done(error,user, info);
             }
