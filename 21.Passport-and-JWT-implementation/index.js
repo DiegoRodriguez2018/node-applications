@@ -1,6 +1,5 @@
 const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
+
 const session = require('express-session');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -33,8 +32,6 @@ require('./models/User');
 
 // Configuring passport:
 
-const mongoose = require('mongoose');
-const passport = require('passport');
 const LocalStrategy = require('passport-local');
 
 const User = mongoose.model('User');
