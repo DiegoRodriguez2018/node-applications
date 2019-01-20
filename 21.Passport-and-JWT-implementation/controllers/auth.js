@@ -33,8 +33,7 @@ router.post('/register', (req, res, next) => {
 
 //POST login route (optional, everyone has access)
 router.post('/login', (req, res, next) => {
-  const { body: { user } } = req;
-  // const user = req.body
+  const user = req.body
   console.log('user',': ', user);
   if(!user.username) {
     return res.status(422).json({
@@ -51,13 +50,15 @@ router.post('/login', (req, res, next) => {
     });
   }
 
+
   return passport.authenticate('local', { session: false }, (err, passportUser, info) => {
-    console.log('err',': ', err);
-    
+
     if(err) {
       return next(err);
     }
-    console.log('passportUser',': ', passportUser);
+
+    //Note that passportUser is a mongoose model.
+    // console.log('passportUser',': ', passportUser);
     
     if(passportUser) {
       const user = passportUser;
@@ -69,11 +70,6 @@ router.post('/login', (req, res, next) => {
     return res.status(400).send(info);
   })(req, res, next);
 });
-
-
-
-
-
 
 router.get('/', (req,res)=>{
   return res.send("auth route working")
