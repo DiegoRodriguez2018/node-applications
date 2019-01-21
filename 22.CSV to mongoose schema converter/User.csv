@@ -1,0 +1,5 @@
+Field,Datatype
+name,String
+OauthToken,String
+OrganisationID,"{ type: Schema.Types.ObjectId, ref: 'Organisation' }"
+isAdmin,Boolean
