@@ -1,11 +1,11 @@
-const express = require('express');
+const express = require("express");
 const router = new express.Router();
 
-router.use('/', require ('./public'));
+router.use("/", require("./public"));
 //if is a protected route we use our protected.js file
-router.use ('/protected', require('./protected'));
+router.use("/protected", require("./protected"));
 
 //Authentication and JSON web tokens:
-router.use ('/auth', require('./auth'));
+router.use("/auth", require("./auth"));
 
-module.exports =  router;
+module.exports = router;
