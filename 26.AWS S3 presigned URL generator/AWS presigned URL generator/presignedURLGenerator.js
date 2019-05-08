@@ -9,24 +9,26 @@ AWS.config = new AWS.Config({
 
 const s3 = new AWS.S3();
 
-
-function generateGetUrl(Key) {
-  s3.getSignedUrl(
-    'getObject',
-    {
-      Bucket: process.env.BUCKET,
-      Key,
-      Expires: 120
-    },
-    (err, url) => {
-      if (err){
-        return err;
-      } else {
-        return url;
+async function generateGetUrl(Key) {
+  return new Promise((resolve, reject) => {
+    s3.getSignedUrl(
+      'getObject',
+      {
+        Bucket: process.env.BUCKET,
+        Key,
+        Expires: 120
+      },
+      (err, url) => {
+        if (err){
+          reject(err);
+        } else {
+          resolve(url);
+        }
       }
-    }
-  );
+    );
+  });
 }
+
 
 async function generatePutUrl(params) {
   return new Promise((resolve, reject) => {
