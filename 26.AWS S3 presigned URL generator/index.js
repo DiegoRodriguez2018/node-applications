@@ -13,7 +13,7 @@ app.get('/generate-get-url', (req,res)=>{
   // Key refers to the remote name of the file.
   // ContentType refers to the MIME content type, in this case image/jpeg
   const { Key, ContentType } =  req.query;
-  const getSignedPutUrl = require('./generateAWSput');
+  const getSignedPutUrl = require('./generateAWSputUrl');
   const Bucket = process.env.BUCKET;
   const params = { Bucket, Key, ContentType }
   getSignedPutUrl(params).then(putUrl => {
