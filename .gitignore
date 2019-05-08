@@ -1,2 +1,4 @@
 node_modules/
 .env
+closure-example.js
+this-example.js
