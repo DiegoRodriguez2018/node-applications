@@ -7,11 +7,13 @@ app.use(cors());
 
 const port = 3500;
 
+// Importing AWSPresigner
 const {
   generateGetUrl,
   generatePutUrl
 } = require('./AWSPresigner');
 
+// GET URL
 app.get('/generate-get-url', (req, res) => {
   // Both Key and ContentType are defined in the client side.
   // Key refers to the remote name of the file.
@@ -25,6 +27,7 @@ app.get('/generate-get-url', (req, res) => {
     });
 });
 
+// PUT URL
 app.get('/generate-put-url', (req,res)=>{
   // Both Key and ContentType are defined in the client side.
   // Key refers to the remote name of the file.
@@ -32,6 +35,9 @@ app.get('/generate-put-url', (req,res)=>{
   const { Key, ContentType } =  req.query;
   generatePutUrl(Key, ContentType).then(putURL => {
     res.send({putURL});
+  })
+  .catch(err => {
+    res.send(err);
   });
 });
 
