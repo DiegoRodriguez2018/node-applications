@@ -1,4 +1,5 @@
-require('dotenv').config();
+// Remember to instantiate dotenv if you haven't do it in the main application:
+// require('dotenv').config()
 const AWS = require('aws-sdk');
 
 // Configuring AWS
@@ -13,7 +14,6 @@ const s3 = new AWS.S3();
 
 // Retrieving the bucket name from env variable
 const Bucket = process.env.BUCKET;
-console.log('Bucket',': ', Bucket);
 
 // GET URL Generator
 async function generateGetUrl(Key) {
