@@ -11,7 +11,7 @@ const port = 3500;
 const {
   generateGetUrl,
   generatePutUrl
-} = require('./AWSPresigner/URLGenerator');
+} = require('./AWSPresigner');
 
 app.get('/generate-get-url', (req, res) => {
   // Both Key and ContentType are defined in the client side.

@@ -1,5 +1,5 @@
 ### Dependencies
-* dotenv
-* express
-* cors
 * aws-sdk
+* express
+* dotenv
+* cors

@@ -1,4 +1,4 @@
-const { generateGetUrl, generatePutUrl } = require('./AWSPresigner/URLGenerator');
+const { generateGetUrl, generatePutUrl } = require('./AWSPresigner');
 
 async function initialize(){
   let Key = 'file-to-read.jpeg';
