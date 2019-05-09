@@ -13,6 +13,7 @@ const s3 = new AWS.S3();
 
 // Retrieving the bucket name from env variable
 const Bucket = process.env.BUCKET;
+console.log('Bucket',': ', Bucket);
 
 // GET URL Generator
 async function generateGetUrl(Key) {
